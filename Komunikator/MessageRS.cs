@@ -36,6 +36,18 @@ namespace Komunikator
         public void EncodeMessage()
         {
             //TODO kodowanie wiadomosci do RS
+            //bit startu 0 i 2 bity stopu 1
+            message_encoded.Clear();
+
+            foreach(char c in message)
+            {
+                int ascii_code = (int)c;
+                string num_binary = Convert.ToString(ascii_code, 2);
+                num_binary = num_binary.Insert(0, "0"); //bit startu
+                num_binary = num_binary.Insert(num_binary.Length, "11"); //bity stopu
+                message_encoded.Add(num_binary);
+            }
+
         }
         public void DecodeMessage()
         {

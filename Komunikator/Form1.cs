@@ -31,7 +31,10 @@ namespace Komunikator
         private void button1_Click(object sender, EventArgs e)
         {
             //wyślij
-
+            message_coder.SetMessage(textBox_message.Text);
+            message_coder.EncodeMessage();  //wiadomosc z pola tekstowego jest kodowana i wyswietlana w richtextbox 
+            richTextBox_coded.Clear();
+            richTextBox_coded.Text = message_coder.GetEncodedMessage(); ;
         }
     }
 }
