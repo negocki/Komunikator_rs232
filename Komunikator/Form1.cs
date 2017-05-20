@@ -34,7 +34,11 @@ namespace Komunikator
             message_coder.SetMessage(textBox_message.Text);
             message_coder.EncodeMessage();  //wiadomosc z pola tekstowego jest kodowana i wyswietlana w richtextbox 
             richTextBox_coded.Clear();
-            richTextBox_coded.Text = message_coder.GetEncodedMessage(); ;
+            richTextBox_coded.Text = message_coder.GetEncodedMessage();
+
+            message_coder.DecodeMessage();
+            richTextBox_messages.Clear();
+            richTextBox_messages.Text = message_coder.GetMessage();
         }
     }
 }
