@@ -1,2 +1,2 @@
 # Komunikator_rs232
-komunikator z symulacją transmisji szeregowej
+symulator przesyłu szeregowego rs232 (kodowanie do bitów) wraz z cenzurą wiadomości (wulgaryzmy wczytywane ze slownik.txt)
