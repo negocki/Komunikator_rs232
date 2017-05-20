@@ -14,6 +14,7 @@ namespace Komunikator
     {
         private MessageRS message_coder = new MessageRS();
         private MessageRS message_receiver = new MessageRS(); //odbiornik
+        private Cenzor cenzura = new Cenzor();
 
         string send_buffer; //bufor przesylu miedzy nadajnikiem i odbiornikiem
 
@@ -38,12 +39,13 @@ namespace Komunikator
         private void button1_Click(object sender, EventArgs e)
         {
             //koduj
-            message_coder.SetMessage(textBox_message.Text);
+            string po_cenzurze = cenzura.SprawdzTekst(textBox_message.Text);
+            message_coder.SetMessage(po_cenzurze);
             message_coder.EncodeMessage();  //wiadomosc z pola tekstowego jest kodowana i wyswietlana w richtextbox 
             richTextBox_coded.Clear();
             richTextBox_coded.Text = message_coder.GetEncodedMessage();
 
-            richTextBox_messages.AppendText("<"+DateTime.Now+"> "+message_coder.GetMessage()+"\n");
+            richTextBox_messages.AppendText("<"+DateTime.Now+"> "+ po_cenzurze + "\n");
             button_send_all.Enabled = true;
             button_send_one.Enabled = true;
             aktualny_znak = 0;
@@ -60,10 +62,10 @@ namespace Komunikator
 
         }
 
-        private void button_clear_Click(object sender, EventArgs e)
+        private void button_clear_Click(object sender, EventArgs e) //czyscimy
         {
             message_receiver.SetMessage("");
-            message_receiver.EncodeMessage();
+            message_receiver.EncodeMessage(); 
             richTextBox_receivebuffer.Clear();
             richTextBox_receivemessage.Clear();
             send_buffer = "";

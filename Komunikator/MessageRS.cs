@@ -70,12 +70,10 @@ namespace Komunikator
         }
         public void ReceiveMessage(string buffer)
         {
-            //message_encoded.Clear();
-            message_encoded.AddRange(buffer.Split(' ').ToList());
+            message_encoded.AddRange(buffer.Split(' ').ToList()); //rozdzielamy na znaki
         }
-        public string GetEncodedChar(int number)
+        public string GetEncodedChar(int number) //zwraca ciag jednego znaku
         {
-
             return message_encoded[number];
         }
         public int CountEncodedChars()
