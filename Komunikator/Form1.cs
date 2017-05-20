@@ -12,6 +12,7 @@ namespace Komunikator
 {
     public partial class Form1 : Form
     {
+        private MessageRS message_coder = new MessageRS();
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +25,12 @@ namespace Komunikator
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //wyślij
 
         }
     }
