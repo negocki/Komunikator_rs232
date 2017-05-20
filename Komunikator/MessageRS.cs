@@ -38,12 +38,20 @@ namespace Komunikator
             //bit startu 0 i 2 bity stopu 1
             message_encoded.Clear();
 
-            foreach(char c in message)
+            foreach (char c in message)
             {
                 int ascii_code = (int)c;
                 string num_binary = Convert.ToString(ascii_code, 2);
                 num_binary = num_binary.Insert(0, "0"); //bit startu
                 num_binary = num_binary.Insert(num_binary.Length, "11"); //bity stopu
+
+                int count_bits = 11 - num_binary.Length; //dopełnianie liczby do pelnych 8 bitów
+                if (count_bits > 0)
+                {
+                    for (int i = 0; i < count_bits; i++)
+                        num_binary = num_binary.Insert(1, "0");
+                }
+
                 message_encoded.Add(num_binary);
             }
 
@@ -59,6 +67,20 @@ namespace Komunikator
                 message = message.Insert(message.Length, char_from_ascii.ToString()); //dodajemy znak do stringu message
             }
 
+        }
+        public void ReceiveMessage(string buffer)
+        {
+            //message_encoded.Clear();
+            message_encoded.AddRange(buffer.Split(' ').ToList());
+        }
+        public string GetEncodedChar(int number)
+        {
+
+            return message_encoded[number];
+        }
+        public int CountEncodedChars()
+        {
+            return message_encoded.Count;
         }
         public MessageRS()
         {
